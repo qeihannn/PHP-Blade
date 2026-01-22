@@ -17,6 +17,8 @@ class AuthController extends Controller {
             'name' => 'required|max:255',
             'username' => 'required|max:255|unique:users',
             'password' => 'required|min:6|max:32|confirmed',
+            'nis' => 'required|unique:users',
+            'kelas' => 'required|max:15',
         ]);
 
         $user = User::create([
@@ -40,7 +42,7 @@ class AuthController extends Controller {
         if (Auth::attempt($credentials)) {
 
             $request->session()->regenerate();
-            return redirect()->route('tickets.index');
+            return redirect()->route('aspirasi.index');
         }
 
         return back()->withErrors(['username' => 'Username atau password salah']);
