@@ -24,14 +24,14 @@
         </tr>
 
         <tr>
-            <th><label for="kategori">Kategori:</label></th>
-            <th>
+            <td><label for="kategori">Kategori:</label></td>
+            <td>
                 <select name="kategori" id="kategori">
                     @foreach ($kategori as $kategori)
                         <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
                     @endforeach
                 </select>
-            </th>
+            </td>
         </tr>
 
 
