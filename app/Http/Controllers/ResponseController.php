@@ -33,7 +33,7 @@ class ResponseController extends Controller
         ]);
 
         // Redirect kembali ke halaman detail aspirasi dengan pesan sukses
-        return redirect()->route('aspirasi.show', $aspirasi)->with('success',
+        return redirect()->route('aspirasis.show', $aspirasi)->with('success',
         'Balasan dikirim.');
     }
     
