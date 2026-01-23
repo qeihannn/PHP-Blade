@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\kategori;
+use App\Models\Kategori;
 use App\Models\Aspirasi;
 use Illuminate\Support\Facades\Auth;
+
 
 class AspirasiController extends Controller
 {
@@ -26,11 +27,14 @@ class AspirasiController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        $title = 'Buat Aspirasi Baru';
-        return view('aspirasis.create', compact('title'));
-    }
+
+public function create()
+{
+    $title = 'Tambah Aspirasi';
+    $kategori = Kategori::all();
+    return view('aspirasis.create', compact('title','kategori'));
+}
+
 
     /**
      * Store a newly created resource in storage.
@@ -53,7 +57,7 @@ class AspirasiController extends Controller
 
         Aspirasi::create([
             'user_id' => Auth::id(),
-        'kategori_id' => $request->kategori_id,
+            'kategori_id' => $request->kategori_id,
             'title' => $request->title,
             'description' => $request->description,
             'photo' => $photoPath,

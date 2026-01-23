@@ -3,6 +3,13 @@
 @section('content')
 <article>
     <header>
+        
+        <p>
+            Nama: {{ $aspirasi->user->name }} <br>
+            NIS: {{ $aspirasi->user->nis }} <br>
+            Kelas: {{ $aspirasi->user->kelas }}
+        </p>
+        
         <h2>{{ $aspirasi->title }}</h2>
         <p>Status: <strong>{{ $aspirasi->status }}</strong></p>
     </header>
