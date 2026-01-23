@@ -30,11 +30,6 @@
         </tr>
         <tr>
             <td>
-                <p>Sudah punya akun?
-                    <a href="{{ route('login') }}">Masuk</a>
-                </p>
-            </td>
-            <td align="center">
                 <button type="submit">Daftar</button>
             </td>
         </tr>
