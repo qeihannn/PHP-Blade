@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('aspirasi', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('kategori_id')->constrained()->cascadeOnDelete();
+            $table->enum('kategori', ['Sarana', 'Prasarana', 'Lainnya']);
             $table->string('title');
             $table->text('description');
             $table->string('photo')->nullable();
