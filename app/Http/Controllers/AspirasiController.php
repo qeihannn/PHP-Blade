@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kategori;
 use App\Models\Aspirasi;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -97,6 +98,15 @@ public function create()
         return redirect()->route('aspirasis.index')
             ->with('success', 'Status aspirasi diperbarui.');
     }
+
+    public function user()
+{
+    $title = 'Kelola User';
+
+    $users = User::where('role', '!=', 'admin')->get();
+
+    return view('aspirasis.user', compact('users', 'title'));
+}
 
     public function edit(string $id)
     {

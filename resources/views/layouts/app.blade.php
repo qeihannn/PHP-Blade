@@ -14,7 +14,7 @@
         <a href="{{ route('aspirasi.create') }}">Buat Aspirasi</a> |
 
         @if (auth()->user()->role === 'admin')
-        <a href="{{ route('register') }}">Buat User Baru</a> |
+        <a href="{{ route('aspirasi.user') }}">Kelola User</a> |
         @endif
 
         <p style="margin: 0;">Hai, {{ auth()->user()->name }}</p>
