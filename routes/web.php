@@ -20,6 +20,9 @@ Route::post('auth/postLogin', [AuthController::class,
 Route::middleware(['auth'])->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/aspirasi/user', [AspirasiController::class, 'user'])
+    ->name('aspirasi.user');
+
     Route::resource('aspirasi', AspirasiController::class);
 
     Route::post('aspirasi/{aspirasi}/responses',
