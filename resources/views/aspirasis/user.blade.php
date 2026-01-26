@@ -3,10 +3,13 @@
 @section('content')
 <div>
 
-    <table border="2" cellpadding="8" cellspacing="0">
-        <head>
+    <div style="margin-bottom: 15px;">
+        <a href="{{ route('register') }}">
+            <button type="button">+ Tambah User</button>
+        </a>
+    </div>
 
-        </head>
+    <table border="2" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
                 <th>No</th>
@@ -27,21 +30,20 @@
                     <td style="text-transform: capitalize;">
                         {{ $user->role }}
                     </td>
-                    <td>
-                        {{ $user->created_at->format('d-m-Y') }}
-                    </td>
+                    <td>{{ $user->created_at->format('d-m-Y') }}</td>
                     <td>
                         delete / edit
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" style="text-align: center;">
+                    <td colspan="6" style="text-align: center;">
                         Data user masih kosong
                     </td>
                 </tr>
             @endforelse
         </tbody>
     </table>
+
 </div>
 @endsection
