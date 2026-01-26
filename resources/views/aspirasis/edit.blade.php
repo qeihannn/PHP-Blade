@@ -3,7 +3,6 @@
 @section('content')
 <div style="max-width: 600px;">
 
-    <h3>Edit User</h3>
 
     {{-- Error validation --}}
     @if ($errors->any())
