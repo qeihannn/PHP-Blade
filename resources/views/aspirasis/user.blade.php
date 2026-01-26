@@ -32,8 +32,21 @@
                     </td>
                     <td>{{ $user->created_at->format('d-m-Y') }}</td>
                     <td>
-                        delete / edit
+                        <div style="display: flex; gap: 6px;">
+                            <a href="{{ route('users.edit', $user->id) }}">
+                                <button type="button">Edit</button>
+                            </a>
+
+                            <form action="{{ route('users.destroy', $user->id) }}"
+                                method="POST"
+                                onsubmit="return confirm('Yakin hapus user ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Hapus</button>
+                            </form>
+                        </div>
                     </td>
+
                 </tr>
             @empty
                 <tr>

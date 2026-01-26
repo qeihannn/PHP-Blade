@@ -7,6 +7,8 @@ use App\Models\Kategori;
 use App\Models\Aspirasi;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 
 
 class AspirasiController extends Controller
@@ -95,31 +97,69 @@ public function create()
 
         $aspirasi->update(['status' => $request->status]);
 
-        return redirect()->route('aspirasis.index')
+        return redirect()->route('aspirasi.index')
             ->with('success', 'Status aspirasi diperbarui.');
     }
 
     public function user()
-{
+    {
     $title = 'Kelola User';
 
     $users = User::where('role', '!=', 'admin')->get();
 
     return view('aspirasis.user', compact('users', 'title'));
+    }
+
+    public function edit(User $user)
+    {
+    $title = 'Edit User';
+    return view('aspirasis.edit', compact('user', 'title'));    
+    }
+
+
+    public function update(Request $request, User $user)
+{
+    $request->validate([
+        'name' => 'required',
+        'username' => 'required',
+        'nis' => 'required',
+        'kelas' => 'required',
+        'password' => 'nullable|confirmed|min:6',
+    ]);
+
+    $user->update([
+        'name' => $request->name,
+        'username' => $request->username,
+        'nis' => $request->nis,
+        'kelas' => $request->kelas,
+    ]);
+
+    if ($request->filled('password')) {
+
+        if (!Hash::check($request->old_password, $user->password)) {
+            return back()->withErrors([
+                'old_password' => 'Password lama tidak sesuai'
+            ]);
+        }
+
+        $user->update([
+            'password' => Hash::make($request->password),
+        ]);
+    }
+
+    return redirect()->route('aspirasi.user')
+        ->with('success', 'Data user berhasil diperbarui');
 }
 
-    public function edit(string $id)
-    {
-        //
+    public function destroy(User $user)
+{
+    if ($user->role === 'admin') {
+        return back()->with('error', 'Admin tidak boleh dihapus');
     }
 
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    $user->delete();
 
-    public function destroy(string $id)
-    {
-        //
-    }
+    return redirect()->route('aspirasi.user')
+        ->with('success', 'User berhasil dihapus');
+}
 }

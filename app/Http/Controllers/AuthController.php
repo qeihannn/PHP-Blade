@@ -29,7 +29,7 @@ class AuthController extends Controller {
             'password' => bcrypt($request->password),
         ]);
 
-            return redirect()->route('aspirasi.index')->with('success',
+            return redirect()->route('aspirasi.user')->with('success',
             'Registrasi berhasil');
     }
 
