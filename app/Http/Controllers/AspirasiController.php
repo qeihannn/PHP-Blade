@@ -16,16 +16,24 @@ class AspirasiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $title = 'Daftar Aspirasi';
+    public function index(Request $request)
+{
+    $title = 'Daftar Aspirasi';
 
-        $aspirasis = (Auth::user()->role == 'admin')
-            ? Aspirasi::with('user')->get()
-            : Aspirasi::where('user_id', Auth::id())->get();
+    $query = Aspirasi::query();
 
-        return view('aspirasis.index', compact('title', 'aspirasis'));
+    if (Auth::user()->role != 'admin') {
+        $query->where('user_id', Auth::id());
     }
+
+    if ($request->filled('kategori')) {
+        $query->where('kategori', $request->kategori);
+    }
+
+    $aspirasis = $query->get();
+
+    return view('aspirasis.index', compact('title', 'aspirasis'));
+}
 
     /**
      * Show the form for creating a new resource.
