@@ -60,7 +60,7 @@ public function create()
 
         Aspirasi::create([
             'user_id' => Auth::id(),
-            'kategori_id' => $request->kategori_id,
+            'kategori' => $request->kategori,
             'title' => $request->title,
             'description' => $request->description,
             'photo' => $photoPath,
@@ -103,7 +103,7 @@ public function create()
 
     public function user()
     {
-    $title = 'Kelola User';
+    $title = 'User Management';
 
     $users = User::where('role', '!=', 'admin')->get();
 
