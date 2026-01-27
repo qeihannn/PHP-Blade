@@ -13,23 +13,24 @@ use Illuminate\Support\Facades\Hash;
 
 class AspirasiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
-    {
-        $title = 'Daftar Aspirasi';
+{
+    $title = 'Daftar Aspirasi';
 
-        $aspirasis = (Auth::user()->role == 'admin')
-            ? Aspirasi::with('user')->get()
-            : Aspirasi::where('user_id', Auth::id())->get();
+    $aspirasis = Aspirasi::orderByRaw("
+        CASE status
+            WHEN 'menunggu' THEN 1
+            WHEN 'diproses' THEN 2
+            WHEN 'selesai' THEN 3
+            ELSE 4
+        END
+    ")
+    ->orderBy('created_at', 'desc')
+    ->get();
 
-        return view('aspirasis.index', compact('title', 'aspirasis'));
-    }
+    return view('aspirasis.index', compact('title', 'aspirasis'));
+}
 
-    /**
-     * Show the form for creating a new resource.
-     */
 
 public function create()
 {
