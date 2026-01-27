@@ -14,6 +14,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('username')->unique();
+            $table->string('nis')->unique()->nullable();
+            $table->string('kelas')->nullable();
             $table->string('password');
             $table->enum('role', ['admin', 'user'])->default('user');
             $table->timestamps();
