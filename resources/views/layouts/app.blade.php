@@ -9,12 +9,14 @@
     
     <hr>
     <nav style="display: flex; align-items: center; gap: 10px;">
-        <a href="{{ route('aspirasi.index') }}">Home</a> |
+        <a href="{{ route('aspirasi.index') }}">Dashboard</a> |
 
+         @if (auth()->user()->role === 'user')
         <a href="{{ route('aspirasi.create') }}">Buat Aspirasi</a> |
+        @endif
 
         @if (auth()->user()->role === 'admin')
-        <a href="{{ route('aspirasi.user') }}">Kelola User</a> |
+        <a href="{{ route('aspirasi.user') }}">User Management</a> |
         @endif
 
         <p style="margin: 0;">Hai, {{ auth()->user()->name }}</p>
