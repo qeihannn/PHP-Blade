@@ -6,6 +6,25 @@
     <p>{{ session('success') }}</p>
 @endif
 
+<form method="GET" action="{{ route('aspirasi.index') }}">
+    <select name="kategori" onchange="this.form.submit()">
+        <option value="">Semua Kategori</option>
+        <option value="sarana" {{ request('kategori') == 'sarana' ? 'selected' : '' }}>
+            Sarana
+        </option>
+        <option value="prasarana" {{ request('kategori') == 'prasarana' ? 'selected' : '' }}>
+            Prasarana
+        </option>
+        <option value="lainnya" {{ request('kategori') == 'lainnya' ? 'selected' : '' }}>
+            Lainnya
+        </option>
+    </select>
+</form>
+
+<br>
+
+
+
 <table border="2" cellpadding="10" cellspacing="0" center>
     <thead>
         <tr>
