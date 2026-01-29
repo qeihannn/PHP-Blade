@@ -5,6 +5,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AspirasiController;
 use App\Http\Controllers\ResponseController;
 
+Route::get('/', function () {
+    return redirect('/auth/login');
+});
+
 Route::get('auth/register', [AuthController::class,
         'showRegisterForm'])->name('register');
         
