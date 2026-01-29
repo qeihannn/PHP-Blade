@@ -137,11 +137,11 @@ public function create()
 
     if ($request->filled('password')) {
 
-        if (!Hash::check($request->old_password, $user->password)) {
-            return back()->withErrors([
-                'old_password' => 'Password lama tidak sesuai'
-            ]);
-        }
+        // if (!Hash::check($request->old_password, $user->password)) {
+        //     return back()->withErrors([
+        //         'old_password' => 'Password lama tidak sesuai'
+        //     ]);
+        // }
 
         $user->update([
             'password' => Hash::make($request->password),
