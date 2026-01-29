@@ -56,12 +56,12 @@
                 <td colspan="2"><strong>Ganti Password</strong></td>
             </tr>
 
-            <tr>
+            <!-- <tr>
                 <td>Password Lama</td>
                 <td>
                     <input type="password" name="old_password">
                 </td>
-            </tr>
+            </tr> -->
 
             <tr>
                 <td>Password Baru</td>
