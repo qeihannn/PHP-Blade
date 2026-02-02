@@ -17,16 +17,22 @@ class AspirasiController extends Controller
 {
     $title = 'Daftar Aspirasi';
 
-    $aspirasis = Aspirasi::orderByRaw("
-        CASE status
-            WHEN 'menunggu' THEN 1
-            WHEN 'diproses' THEN 2
-            WHEN 'selesai' THEN 3
-            ELSE 4
-        END
-    ")
-    ->orderBy('created_at', 'desc')
-    ->get();
+    $query = Aspirasi::with('user')
+        ->orderByRaw("
+            CASE status
+                WHEN 'menunggu' THEN 1
+                WHEN 'diproses' THEN 2
+                WHEN 'selesai' THEN 3
+                ELSE 4
+            END
+        ")
+        ->orderBy('created_at', 'desc');
+
+    if (Auth::user()->role === 'user') {
+        $query->where('user_id', Auth::id());
+    }
+
+    $aspirasis = $query->get();
 
     return view('aspirasis.index', compact('title', 'aspirasis'));
 }
