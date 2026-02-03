@@ -37,6 +37,27 @@ class AspirasiController extends Controller
     return view('aspirasis.index', compact('title', 'aspirasis'));
 }
 
+    public function register(Request $request) {
+        $request->validate([
+            'name' => 'required|max:255',
+            'username' => 'required|max:255|unique:users',
+            'password' => 'required|min:6|max:32|confirmed',
+            'nis' => 'required|unique:users',
+            'kelas' => 'required|max:15',
+        ]);
+
+        $user = User::create([
+            'name' =>$request->name,
+            'username' =>$request->username,
+            'nis' => $request->nis,
+            'kelas' => $request->kelas,
+            'password' => bcrypt($request->password),
+        ]);
+
+            return redirect()->route('aspirasi.user')->with('success',
+            'Registrasi berhasil');
+    }
+
 
 public function create()
 {
