@@ -14,6 +14,8 @@
             <tr>
                 <th>No</th>
                 <th>Nama</th>
+                <th>Kelas</th>
+                <th>NIS</th>
                 <th>User Name</th>
                 <th>Role</th>
                 <th>Tanggal Dibuat</th>
@@ -26,6 +28,8 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $user->name }}</td>
+                    <td>{{$user->kelas}}</td>
+                    <td>{{$user->nis}}</td>
                     <td>{{ $user->username }}</td>
                     <td style="text-transform: capitalize;">
                         {{ $user->role }}

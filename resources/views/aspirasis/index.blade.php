@@ -11,8 +11,6 @@
         <tr>
             <th>#</th>
             <th>Nama</th>
-            <th>NIS</th>
-            <th>Kelas</th>
             <th>Judul</th>
             <th>Kategori</th>
             <th>Status</th>
@@ -25,8 +23,6 @@
             <tr>
                 <td>{{ $loop->index + 1 }}</td>
                 <td>{{$aspirasi->user->name}}</td>
-                <td>{{$aspirasi->user->nis}}</td>
-                <td>{{$aspirasi->user->kelas}}</td>
                 <td>
                     <a href="{{ route('aspirasi.show', $aspirasi->id) }}">
                         {{ $aspirasi->title }}

@@ -12,7 +12,7 @@ Route::get('/', function () {
 Route::get('auth/register', [AuthController::class,
         'showRegisterForm'])->name('register');
         
-Route::post('auth/postRegister', [AuthController::class,
+Route::post('auth/postRegister', [AspirasiController::class,
     'register'])->name('postRegister');
 
 Route::get('auth/login', [AuthController::class,
