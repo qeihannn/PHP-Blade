@@ -54,7 +54,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" style="text-align: center;">
+                    <td colspan="8" style="text-align: center;">
                         Data user masih kosong
                     </td>
                 </tr>
