@@ -32,9 +32,9 @@ class AspirasiController extends Controller
         $query->where('user_id', Auth::id());
     }
 
-    $aspirasis = $query->get();
+    $aspirasi = $query->get();
 
-    return view('aspirasis.index', compact('title', 'aspirasis'));
+    return view('aspirasi.index', compact('title', 'aspirasi'));
 }
 
     public function register(Request $request) {
@@ -63,7 +63,7 @@ public function create()
 {
     $title = 'Tambah Aspirasi';
     $kategori = Kategori::all();
-    return view('aspirasis.create', compact('title','kategori'));
+    return view('aspirasi.create', compact('title','kategori'));
 }
 
 
@@ -83,7 +83,7 @@ public function create()
         $photoPath = null;
 
         if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('aspirasis', 'public');
+            $photoPath = $request->file('photo')->store('aspirasi', 'public');
         }
 
         Aspirasi::create([
@@ -111,7 +111,7 @@ public function create()
             abort(403);
         }
 
-        return view('aspirasis.show', compact('title', 'aspirasi'));
+        return view('aspirasi.show', compact('title', 'aspirasi'));
     }
 
     /**
@@ -135,13 +135,13 @@ public function create()
 
     $users = User::where('role', '!=', 'admin')->get();
 
-    return view('aspirasis.user', compact('users', 'title'));
+    return view('aspirasi.user', compact('users', 'title'));
     }
 
     public function edit(User $user)
     {
     $title = 'Edit User';
-    return view('aspirasis.edit', compact('user', 'title'));    
+    return view('aspirasi.edit', compact('user', 'title'));    
     }
 
 

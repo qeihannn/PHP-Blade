@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($aspirasis as $aspirasi)
+        @foreach ($aspirasi as $aspirasi)
             <tr>
                 <td>{{ $loop->index + 1 }}</td>
                 <td>{{$aspirasi->user->name}}</td>
